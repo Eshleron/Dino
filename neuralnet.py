@@ -1,6 +1,7 @@
 # To open TENSORBOARD use: tensorboard --logdir=logs/
 # or tensorboard --logdir=logs/ --host localhost --port 8088
 # tensorboard --logdir=D:/PycharmProjects/Dino/logs/ --host localhost --port 8088
+# tensorboard --logdir=C:/Users/psn.TO/PycharmProjects/Dino/logs/ --host localhost --port 8088
 
 import time
 
@@ -25,9 +26,9 @@ y = np.array([np.array(data[1]) for data in dataset])
 # print(y)
 
 
-dense_layers = [7]
-layer_sizes = [2, 4, 8, 16, 32, 64, 128]
-conv_layers = [1, 2, 3, 4]  # 3 16 4 was BEST
+dense_layers = [3]
+layer_sizes = [16]  # 3 64 2 val_loss: 0.5922 - val_acc: 0.7426
+conv_layers = [4]  # 3 16 4 val_loss: 0.6312 - val_acc: 0.7525
 
 for dense_layer in dense_layers:
     for layer_size in layer_sizes:
@@ -66,5 +67,6 @@ for dense_layer in dense_layers:
                       epochs=10,
                       validation_split=0.2,
                       callbacks=[tensorboard])
+
 
 model.save('DINO-{}.model'.format(NAME))
